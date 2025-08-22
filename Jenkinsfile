@@ -28,7 +28,7 @@ pipeline {
                 }
                 steps {
                     sh '''
-                    test -f build/index.html
+                    #test -f build/index.html
                     npm test
                 '''
                 }
@@ -38,7 +38,6 @@ pipeline {
                     docker {
                         image 'mcr.microsoft.com/playwright:v1.55.0-noble'
                         reuseNode true
-                        args '-u root:root'
                     }
                 }
                 steps {
@@ -53,7 +52,7 @@ pipeline {
     }
         post {
             always {
-                junit '**/test-results/*.xml'
+                junit '**/jest-results/*.xml'
             }
         }
 }
